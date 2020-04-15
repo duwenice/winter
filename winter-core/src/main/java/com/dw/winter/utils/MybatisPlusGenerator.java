@@ -37,19 +37,15 @@ public class MybatisPlusGenerator {
         strategyConfig.setEntitySerialVersionUID(false);
         strategyConfig.setLogicDeleteFieldName("is_deleted");
         strategyConfig.setSuperEntityClass("com.dw.winter.commom.base.BaseEntity");
-        strategyConfig.setInclude("winter_order");
+        strategyConfig.setInclude("winter_sub_order");
 
         autoGenerator.setStrategy(strategyConfig);
 
         // 跟包相关的配置项
         PackageConfig packageConfig = new PackageConfig();
         packageConfig.setParent("com.dw.winter");
-        packageConfig.setEntity("biz.order.entity");
-        packageConfig.setMapper("biz.order.mapper");
-        packageConfig.setXml("biz.order.mapper");
-        packageConfig.setService("biz.order.service");
-        packageConfig.setServiceImpl("biz.order.service.impl");
-        packageConfig.setController("biz.order.controller");
+        packageConfig.setModuleName("biz.subOrder");
+        packageConfig.setXml("mapper");
 
         autoGenerator.setPackageInfo(packageConfig);
 

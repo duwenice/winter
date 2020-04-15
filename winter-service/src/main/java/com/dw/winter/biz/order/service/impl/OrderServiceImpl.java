@@ -1,10 +1,10 @@
 package com.dw.winter.biz.order.service.impl;
 
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dw.winter.biz.order.entity.OrderEntity;
 import com.dw.winter.biz.order.mapper.OrderMapper;
 import com.dw.winter.biz.order.service.IOrderService;
-import com.dw.winter.common.base.impl.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @author duwen
  * @since 2020-04-15
  */
-@Service
-public class OrderServiceImpl extends BaseServiceImpl<OrderMapper, OrderEntity> implements IOrderService {
+@Service("orderService")
+public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> implements IOrderService {
 
 }

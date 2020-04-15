@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dw.winter.biz.order.mapper.OrderMapper">
+<mapper namespace="com.dw.winter.biz.suborder.mapper.SubOrderMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.dw.winter.biz.order.entity.OrderEntity">
+    <resultMap id="BaseResultMap" type="com.dw.winter.biz.suborder.entity.SubOrderEntity">
         <result column="id" property="id"/>
         <result column="remark" property="remark"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
         <result column="is_deleted" property="isDeleted"/>
-        <result column="order_no" property="orderNo"/>
-        <result column="order_money" property="orderMoney"/>
-        <result column="user_id" property="userId"/>
-        <result column="order_status" property="orderStatus"/>
+        <result column="order_id" property="orderId"/>
+        <result column="sub_order_no" property="subOrderNo"/>
+        <result column="sku_id" property="skuId"/>
+        <result column="unit_price" property="unitPrice"/>
+        <result column="quantity" property="quantity"/>
+        <result column="sub_order_money" property="subOrderMoney"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -22,7 +24,7 @@
         create_time,
         update_time,
         is_deleted,
-        order_no, order_money, user_id, order_status
+        order_id, sub_order_no, sku_id, unit_price, quantity, sub_order_money
     </sql>
 
 </mapper>

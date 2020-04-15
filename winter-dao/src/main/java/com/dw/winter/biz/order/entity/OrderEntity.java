@@ -32,10 +32,6 @@ public class OrderEntity extends BaseEntity {
      */
     private BigDecimal orderMoney;
 
-    /**
-     * 币种
-     */
-    private String curCode;
 
     /**
      * 下单人id
