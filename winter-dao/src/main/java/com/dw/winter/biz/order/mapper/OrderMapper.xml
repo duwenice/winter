@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dw.winter.biz.order.mapper.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dw.winter.biz.order.entity.OrderEntity">
+    <result column="id" property="id" />
+    <result column="remark" property="remark" />
+    <result column="create_time" property="createTime" />
+    <result column="update_time" property="updateTime" />
+    <result column="is_deleted" property="isDeleted" />
+        <result column="order_no" property="orderNo" />
+        <result column="order_money" property="orderMoney" />
+        <result column="cur_code" property="curCode" />
+        <result column="user_id" property="userId" />
+        <result column="order_status" property="orderStatus" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        remark,
+        create_time,
+        update_time,
+        is_deleted,
+        order_no, order_money, cur_code, user_id, order_status
+    </sql>
+
+</mapper>

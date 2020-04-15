@@ -10,6 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>winter-dao</artifactId>
+    <packaging>jar</packaging>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.dw</groupId>
+            <artifactId>winter-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

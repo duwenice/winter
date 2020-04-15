@@ -11,4 +11,11 @@
 
     <artifactId>winter-web</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.dw</groupId>
+            <artifactId>winter-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
