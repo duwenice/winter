@@ -16,7 +16,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 /**
- * @author duwen@shein.com
+ * @author duwen
  * @date 2020/3/27
  */
 @Slf4j

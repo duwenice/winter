@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * @author duwen@shein.com
+ * @author duwen
  * @date 2020/3/4
  */
 public class InEnumValidator implements ConstraintValidator<InEnum, Serializable> {

@@ -2,11 +2,19 @@ package com.dw.winter.commom.handler;
 
 import com.dw.winter.commom.base.CommonResponse;
 import com.dw.winter.common.exception.ServiceException;
+import com.google.common.base.Joiner;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.stream.Collectors;
 
 /**
  * 全局异常处理
@@ -30,10 +38,32 @@ public class WinterExceptionHandler {
         return CommonResponse.fail(ex.getCode(), ex.getMessage());
     }
 
-    @ExceptionHandler(Exception.class)
+    /**
+     * 运行时异常
+     *
+     * @param ex 运行时异常
+     * @return CommonResponse
+     */
+    @ExceptionHandler(RuntimeException.class)
     @ResponseBody
-    public CommonResponse runTimeExceptionHandle(Exception ex) {
-        log.error(ex.getMessage(), ex);
-        return CommonResponse.fail();
+    public CommonResponse runTimeExceptionHandle(RuntimeException ex) {
+        return CommonResponse.fail(ExceptionUtils.getStackTrace(ex));
+    }
+
+    /**
+     * validate 校验异常
+     *
+     * @param ex ex
+     * @return CommonResponse
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    public CommonResponse validateExceptionHandle(MethodArgumentNotValidException ex) {
+        BindingResult bindingResult = ex.getBindingResult();
+        String errors = StringUtils.EMPTY;
+        if (bindingResult.hasErrors()) {
+            errors = Joiner.on(",").join(bindingResult.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList()));
+        }
+        return CommonResponse.fail(errors);
     }
 }
