@@ -4,10 +4,12 @@ package com.dw.winter.biz.order.controller;
 import com.dw.winter.biz.order.dto.OrderCreateDTO;
 import com.dw.winter.biz.order.service.IOrderService;
 import com.dw.winter.commom.base.CommonResponse;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.binder.MeterBinder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,14 +30,22 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/order")
 @Api(tags = "order")
-public class OrderController {
+public class OrderController implements MeterBinder {
 
     @Resource
     private IOrderService orderService;
 
+    private Counter orderCounter = null;
+
     @PostMapping("/create")
     @ApiOperation("create")
     public CommonResponse create(@RequestBody @Validated OrderCreateDTO dto) {
+        orderCounter.increment();
         return CommonResponse.success();
+    }
+
+    @Override
+    public void bindTo(MeterRegistry meterRegistry) {
+        this.orderCounter = meterRegistry.counter("order.count");
     }
 }
