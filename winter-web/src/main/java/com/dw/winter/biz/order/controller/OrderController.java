@@ -4,6 +4,7 @@ package com.dw.winter.biz.order.controller;
 import com.dw.winter.biz.order.dto.OrderCreateDTO;
 import com.dw.winter.biz.order.service.IOrderService;
 import com.dw.winter.commom.base.CommonResponse;
+import com.google.common.collect.Lists;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.binder.MeterBinder;
@@ -11,12 +12,14 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 /**
  * <p>
@@ -47,5 +50,19 @@ public class OrderController implements MeterBinder {
     @Override
     public void bindTo(MeterRegistry meterRegistry) {
         this.orderCounter = meterRegistry.counter("order.count");
+    }
+
+    @GetMapping("/deadLock")
+    @ApiOperation("deadLock")
+    public CommonResponse deadLock() {
+        List<Long> userIds = LongStream.rangeClosed(1, 100).boxed().collect(Collectors.toList());
+        userIds.parallelStream().forEach(userId -> {
+            try {
+                orderService.deadLock(userId);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        return CommonResponse.success();
     }
 }

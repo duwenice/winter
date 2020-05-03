@@ -14,4 +14,9 @@ import com.dw.winter.biz.order.entity.OrderEntity;
  */
 public interface IOrderService extends IService<OrderEntity> {
 
+    /**
+     * 重现deadLock
+     * @param userId userId
+     */
+    void deadLock(Long userId) throws InterruptedException;
 }

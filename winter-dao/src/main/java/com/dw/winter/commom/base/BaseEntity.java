@@ -1,5 +1,6 @@
 package com.dw.winter.commom.base;
 
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.dw.winter.biz.enums.YesOrNoEnum;
 import lombok.Data;
 
@@ -38,5 +39,6 @@ public class BaseEntity implements Serializable {
     /**
      * 是否已删除
      */
+    @TableLogic
     private YesOrNoEnum isDeleted;
 }

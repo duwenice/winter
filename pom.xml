@@ -16,9 +16,9 @@
         <module>winter-web</module>
     </modules>
 
-<!--    <properties>-->
-<!--        <java.version>1.8</java.version>-->
-<!--    </properties>-->
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -139,6 +139,12 @@
             <groupId>com.spring4all</groupId>
             <artifactId>swagger-spring-boot-starter</artifactId>
             <version>1.9.1.RELEASE</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/p6spy/p6spy -->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.9.0</version>
         </dependency>
     </dependencies>
 
