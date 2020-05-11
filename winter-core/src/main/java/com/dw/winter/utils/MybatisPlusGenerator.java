@@ -18,11 +18,11 @@ public class MybatisPlusGenerator {
         DataSourceConfig dateSource = new DataSourceConfig();
         String mysql5DriveName = "com.mysql.jdbc.Driver";
         String mysql6DriveName = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://cdb-7f9cr572.cd.tencentcdb.com:10092/winter?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&tinyInt1isBit=false";
+        String url = "jdbc:mysql://39.107.139.169:3306/winter?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&tinyInt1isBit=false";
         dateSource.setDriverName(mysql5DriveName);
         dateSource.setUrl(url);
         dateSource.setUsername("root");
-        dateSource.setPassword("@12345678");
+        dateSource.setPassword("123456");
         autoGenerator.setDataSource(dateSource);
 
         autoGenerator.setDataSource(dateSource);
@@ -37,14 +37,14 @@ public class MybatisPlusGenerator {
         strategyConfig.setEntitySerialVersionUID(false);
         strategyConfig.setLogicDeleteFieldName("is_deleted");
         strategyConfig.setSuperEntityClass("com.dw.winter.commom.base.BaseEntity");
-        strategyConfig.setInclude("winter_sub_order");
+        strategyConfig.setInclude("winter_order_b");
 
         autoGenerator.setStrategy(strategyConfig);
 
         // 跟包相关的配置项
         PackageConfig packageConfig = new PackageConfig();
         packageConfig.setParent("com.dw.winter");
-        packageConfig.setModuleName("biz.subOrder");
+        packageConfig.setModuleName("biz.orderB");
         packageConfig.setXml("mapper");
 
         autoGenerator.setPackageInfo(packageConfig);

@@ -29,4 +29,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
         insert.setUserId(userId);
         save(insert);
     }
+
+    @Override
+    public void check() {
+
+    }
 }

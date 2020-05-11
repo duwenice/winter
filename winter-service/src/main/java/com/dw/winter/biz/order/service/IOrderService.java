@@ -16,7 +16,14 @@ public interface IOrderService extends IService<OrderEntity> {
 
     /**
      * 重现deadLock
+     *
      * @param userId userId
+     * @throws InterruptedException ex
      */
     void deadLock(Long userId) throws InterruptedException;
+
+    /**
+     * orderA 和 orderB 进行核对
+     */
+    void check();
 }
