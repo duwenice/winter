@@ -32,6 +32,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
 
     @Override
     public void check() {
-
+        
     }
 }
