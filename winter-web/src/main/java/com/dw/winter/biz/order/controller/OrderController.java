@@ -3,8 +3,8 @@ package com.dw.winter.biz.order.controller;
 
 import com.dw.winter.biz.order.dto.OrderCreateDTO;
 import com.dw.winter.biz.order.service.IOrderService;
+import com.dw.winter.biz.orderA.service.IOrderAService;
 import com.dw.winter.commom.base.CommonResponse;
-import com.google.common.collect.Lists;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.binder.MeterBinder;
@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 /**
@@ -37,6 +35,9 @@ public class OrderController implements MeterBinder {
 
     @Resource
     private IOrderService orderService;
+
+    @Resource
+    private IOrderAService orderAService;
 
     private Counter orderCounter = null;
 
@@ -64,5 +65,15 @@ public class OrderController implements MeterBinder {
             }
         });
         return CommonResponse.success();
+    }
+
+    @GetMapping("/initOrderA")
+    public void initOrderA() {
+        orderAService.init();
+    }
+
+    @GetMapping("/move")
+    public void move() {
+        orderService.move();
     }
 }

@@ -2,6 +2,7 @@ package com.dw.winter.biz.orderA.entity;
 
 import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.dw.winter.biz.enums.StatusEnum;
 import com.dw.winter.commom.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -35,7 +36,7 @@ public class OrderAEntity extends BaseEntity {
     /**
      * 订单状态(0:待核对 1:核对一致 2:核对不一致)
      */
-    private Boolean orderStatus;
+    private StatusEnum orderStatus;
 
 
 }

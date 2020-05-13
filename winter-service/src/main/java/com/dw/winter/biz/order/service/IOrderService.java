@@ -26,4 +26,9 @@ public interface IOrderService extends IService<OrderEntity> {
      * orderA 和 orderB 进行核对
      */
     void check();
+
+    /**
+     * orderA表move到orderB表,并更新orderA表状态
+     */
+    void move();
 }
