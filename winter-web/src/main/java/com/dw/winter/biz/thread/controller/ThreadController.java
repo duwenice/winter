@@ -26,13 +26,13 @@ public class ThreadController {
     }
 
     @GetMapping("/threadPool")
-    public CommonResponse threadPool() {
+    public CommonResponse threadPool() throws InterruptedException {
         threadService.threadPool();
         return CommonResponse.success();
     }
 
     @GetMapping("/forkJoin")
-    public CommonResponse forkJoin() {
+    public CommonResponse forkJoin() throws InterruptedException {
         threadService.forkJoinPool();
         return CommonResponse.success();
     }
