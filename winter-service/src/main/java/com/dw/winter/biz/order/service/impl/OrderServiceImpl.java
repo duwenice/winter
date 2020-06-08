@@ -47,11 +47,9 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deadLock(Long userId) throws InterruptedException {
-        remove(new LambdaQueryWrapper<OrderEntity>().eq(OrderEntity::getUserId, userId).last("limit 1"));
+        remove(new LambdaQueryWrapper<OrderEntity>().eq(OrderEntity::getUserId, userId));
         Thread.sleep(3 * 1000);
-        OrderEntity insert = new OrderEntity();
-        insert.setUserId(userId);
-        save(insert);
+        save(new OrderEntity().setUserId(userId));
     }
 
     @Override

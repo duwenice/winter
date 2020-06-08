@@ -61,7 +61,7 @@ public class OrderController implements MeterBinder {
             try {
                 orderService.deadLock(userId);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                log.error("error", e);
             }
         });
         return CommonResponse.success();
