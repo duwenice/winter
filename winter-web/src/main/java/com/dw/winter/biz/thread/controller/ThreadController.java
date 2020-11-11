@@ -1,7 +1,7 @@
 package com.dw.winter.biz.thread.controller;
 
 import com.dw.winter.biz.thread.ThreadServiceImpl;
-import com.dw.winter.commom.base.CommonResponse;
+import com.dw.winter.common.base.CommonResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

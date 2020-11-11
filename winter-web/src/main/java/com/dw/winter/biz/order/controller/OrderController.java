@@ -2,9 +2,11 @@ package com.dw.winter.biz.order.controller;
 
 
 import com.dw.winter.biz.order.dto.OrderCreateDTO;
+import com.dw.winter.biz.order.entity.OrderEntity;
+import com.dw.winter.biz.order.mapper.OrderMapper;
 import com.dw.winter.biz.order.service.IOrderService;
 import com.dw.winter.biz.orderA.service.IOrderAService;
-import com.dw.winter.commom.base.CommonResponse;
+import com.dw.winter.common.base.CommonResponse;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.binder.MeterBinder;
@@ -15,6 +17,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
@@ -75,5 +79,19 @@ public class OrderController implements MeterBinder {
     @GetMapping("/move")
     public void move() {
         orderService.move();
+    }
+
+    @GetMapping("/insert")
+    public void insert(int month) {
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setCreateTime(LocalDateTime.of(2020, month, 1, 0, 0, 0));
+        orderService.save(orderEntity);
+    }
+
+    @Resource
+    private OrderMapper orderMapper;
+    @GetMapping("/list")
+    public CommonResponse<List<OrderEntity>> list() {
+        return CommonResponse.success(orderMapper.selectList(null));
     }
 }

@@ -1,4 +1,4 @@
-package com.dw.winter.commom.base;
+package com.dw.winter.common.base;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

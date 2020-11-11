@@ -1,4 +1,4 @@
-package com.dw.winter.commom.demo;
+package com.dw.winter.common.demo;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

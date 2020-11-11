@@ -24,5 +24,9 @@
         is_deleted,
         order_no, order_money, user_id, order_status
     </sql>
+    <select id="selectList1" resultType="com.dw.winter.biz.order.entity.OrderEntity">
+     select * from winter_order
+    </select>
+
 
 </mapper>

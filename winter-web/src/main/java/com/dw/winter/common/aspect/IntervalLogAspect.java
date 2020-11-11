@@ -1,4 +1,4 @@
-package com.dw.winter.commom.aspect;
+package com.dw.winter.common.aspect;
 
 
 import com.dw.winter.annotation.IntervalLog;

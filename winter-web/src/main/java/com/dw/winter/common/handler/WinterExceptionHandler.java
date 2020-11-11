@@ -1,11 +1,10 @@
-package com.dw.winter.commom.handler;
+package com.dw.winter.common.handler;
 
-import com.dw.winter.commom.base.CommonResponse;
+import com.dw.winter.common.base.CommonResponse;
 import com.dw.winter.common.exception.ServiceException;
 import com.google.common.base.Joiner;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -38,17 +37,6 @@ public class WinterExceptionHandler {
         return CommonResponse.fail(ex.getCode(), ex.getMessage());
     }
 
-    /**
-     * 运行时异常
-     *
-     * @param ex 运行时异常
-     * @return CommonResponse
-     */
-    @ExceptionHandler(RuntimeException.class)
-    @ResponseBody
-    public CommonResponse runTimeExceptionHandle(RuntimeException ex) {
-        return CommonResponse.fail(ExceptionUtils.getStackTrace(ex));
-    }
 
     /**
      * validate 校验异常
