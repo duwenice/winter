@@ -176,6 +176,16 @@
             <artifactId>webmagic-extension</artifactId>
             <version>0.7.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.4.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.4.1.Final</version>
+        </dependency>
     </dependencies>
 
     <build>
