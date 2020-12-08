@@ -2,6 +2,7 @@ package com.dw.winter.biz.order.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dw.winter.annotation.IntervalLog;
 import com.dw.winter.biz.enums.StatusEnum;
@@ -12,12 +13,16 @@ import com.dw.winter.biz.orderA.entity.OrderAEntity;
 import com.dw.winter.biz.orderA.mapper.OrderAMapper;
 import com.dw.winter.biz.orderB.entity.OrderBEntity;
 import com.dw.winter.biz.orderB.mapper.OrderBMapper;
+import com.dw.winter.commom.exception.DAOException;
 import com.dw.winter.common.exception.ServiceException;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -35,6 +40,7 @@ import java.util.concurrent.TimeUnit;
  * @author duwen
  * @since 2020-04-15
  */
+@Slf4j
 @Service("orderService")
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> implements IOrderService {
 
@@ -126,5 +132,43 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, OrderEntity> impl
                     orderAMapper.updateById(update);
                 })
         );
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void methodForRequired() {
+        log.info("transactionName:{}", TransactionSynchronizationManager.getCurrentTransactionName());
+        save(new OrderEntity().setOrderNo("methodForRequired"));
+        throw new RuntimeException();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
+    public void methodForRequireNew() {
+        log.info("transactionName:{}", TransactionSynchronizationManager.getCurrentTransactionName());
+        save(new OrderEntity().setOrderNo("methodForRequireNew"));
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.NESTED)
+    public void methodForNested() {
+        log.info("transactionName:{}", TransactionSynchronizationManager.getCurrentTransactionName());
+        save(new OrderEntity().setOrderNo("methodForNestedInner"));
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.SUPPORTS)
+    public void methodForSupports() {
+        log.info("transactionName:{}", TransactionSynchronizationManager.getCurrentTransactionName());
+        save(new OrderEntity().setOrderNo("methodForSupports"));
+        throw new RuntimeException();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED)
+    public void methodForNotSupports() {
+        log.info("transactionName:{}", TransactionSynchronizationManager.getCurrentTransactionName());
+        save(new OrderEntity().setOrderNo("methodForNotSupports"));
+        throw new RuntimeException();
     }
 }

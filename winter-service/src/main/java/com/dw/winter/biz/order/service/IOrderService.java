@@ -31,4 +31,29 @@ public interface IOrderService extends IService<OrderEntity> {
      * orderA表move到orderB表,并更新orderA表状态
      */
     void move();
+
+    /**
+     * method for test transaction required
+     */
+    void methodForRequired();
+
+    /**
+     * method for test transaction require new
+     */
+    void methodForRequireNew();
+
+    /**
+     * method for test transaction nested
+     */
+    void methodForNested();
+
+    /**
+     * method for test transaction supports
+     */
+    void methodForSupports();
+
+    /**
+     * method for test transaction not supports
+     */
+    void methodForNotSupports();
 }
