@@ -41,7 +41,6 @@ public class EsTemplate {
      *
      * @param t     entity
      * @param index 索引名
-     * @return insert successfully then return true
      */
     @SneakyThrows
     public <T extends IdDTO> void insert(T t, String index) {
@@ -78,7 +77,6 @@ public class EsTemplate {
      *
      * @param list  entity list
      * @param index 索引名
-     * @return insert successfully then return true
      */
     @SneakyThrows
     public <T extends IdDTO> void insertBatch(List<T> list, String index) {
@@ -97,7 +95,6 @@ public class EsTemplate {
      *
      * @param t     entity
      * @param index 索引名
-     * @return update successfully then return true
      */
     @SneakyThrows
     public <T extends IdDTO> void updateByDocId(T t, String index) {
