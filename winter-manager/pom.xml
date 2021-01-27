@@ -12,4 +12,12 @@
     <artifactId>winter-manager</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.dw</groupId>
+            <artifactId>winter-dao</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 </project>

@@ -17,5 +17,10 @@
             <artifactId>winter-service</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.dw</groupId>
+            <artifactId>winter-manager</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>
