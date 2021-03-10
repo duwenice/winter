@@ -17,6 +17,7 @@ import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.reindex.UpdateByQueryRequest;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.stereotype.Component;
 
@@ -141,5 +142,19 @@ public class EsTemplate {
         return Arrays.stream(response.getHits().getHits())
                 .map(e -> JsonUtils.toObject(e.getSourceAsString(), clazz))
                 .collect(Collectors.toList());
+    }
+
+    @SneakyThrows
+    public void pageQuery(Map<String, Object> queryMap, String index, Class<?> clazz, List<String> groupFields) {
+        SearchRequest searchRequest = new SearchRequest(index);
+        SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+        queryMap.forEach((key, value) ->
+                boolQueryBuilder.must(QueryBuilders.termQuery(key, value))
+        );
+        AggregationBuilders.terms("groupResult");
+        searchSourceBuilder.query(boolQueryBuilder);
+        searchRequest.source(searchSourceBuilder);
+        SearchResponse response = restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
     }
 }
